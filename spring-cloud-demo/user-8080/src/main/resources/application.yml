@@ -6,4 +6,12 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:9090/eureka,http://127.0.0.1:9091/eureka
+      defaultZone: http://127.0.0.1:9090/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

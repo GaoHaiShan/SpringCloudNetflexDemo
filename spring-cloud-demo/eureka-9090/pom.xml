@@ -10,15 +10,15 @@
     <groupId>eureka-9090</groupId>
     <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
+    <name>eureka</name>
 
     <dependencies>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
     </dependencies>
-
 
     <build>
         <plugins>
@@ -28,5 +28,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
