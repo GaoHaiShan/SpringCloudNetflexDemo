@@ -3,15 +3,33 @@ spring:
     name: user
 server:
   port: 8080
+#eureka配置
 eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:9090/eureka
+#监控配置
 management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: refresh,hystrix.stream
   endpoint:
     health:
       show-details: always
+
+#fegin熔断配置
+hystrix:
+  threadpool:
+    default:
+      #线程数
+      coreSize: 2
+      #等待队列大小
+      maxQueueSize: 4
+      #拒绝策略启动大小
+      queueSizeRejectionThreshold: 3
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+#    default:
