@@ -12,6 +12,7 @@
         <module>user-8080</module>
         <module>order-8082</module>
         <module>hystrix</module>
+        <module>gateway-9091</module>
     </modules>
     <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
