@@ -1,0 +1,25 @@
+server:
+  port: 9091
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:9090/eureka/
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: path_filter
+        uri: lb://USER
+        predicates:
+        - Path=/user/**
+      - id: cookie_filter
+        uri: https://www.baidu.com
+        predicates:
+        - Cookie=token,111
+      - id: after_filter
+        uri: https://spring.io
+        predicates:
+        - After=2020-11-01T17:42:47.789-07:00[America/Denver]

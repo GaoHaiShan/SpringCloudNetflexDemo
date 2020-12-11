@@ -3,12 +3,12 @@ package user8080.demo;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.netflix.ribbon.proxy.annotation.Hystrix;
+import org.example.Repertory;
 import org.order.api.IOrder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/user")
 public class User {
 
     @Autowired
@@ -99,5 +100,19 @@ public class User {
         return "访问人数过多-访问数";
     }
 
+    @Autowired
+    private Repertory repertory;
 
+    @GetMapping("/repertory")
+    public String repertory(){
+        return repertory.repertory();
+    }
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @GetMapping("/repertory1")
+    public String repertory1(){
+        return restTemplate.getForObject("http://REPERTORY/repertory",String.class);
+    }
 }
